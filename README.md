@@ -2,7 +2,6 @@
 
 A Clojure library designed to extract named capture groups from a regex match in a map
 
-[![CircleCI](https://circleci.com/gh/punit-naik/named-capture-groups/tree/master.svg?style=svg)](https://circleci.com/gh/punit-naik/named-capture-groups/tree/master)
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.punit-naik/named-capture-groups.svg)](https://clojars.org/org.clojars.punit-naik/named-capture-groups)
 
 ## Usage
