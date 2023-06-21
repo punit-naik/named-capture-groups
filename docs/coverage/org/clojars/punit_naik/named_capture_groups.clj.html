@@ -1,0 +1,77 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../coverage.css"/>  <title> org/clojars/punit_naik/named_capture_groups.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;org.clojars.punit-naik.named-capture-groups)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                003&nbsp;&nbsp;(defn&nbsp;capture-group-names
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&quot;If&nbsp;you&nbsp;have&nbsp;a&nbsp;regex&nbsp;with&nbsp;named&nbsp;capture&nbsp;groups&nbsp;like:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`#\&quot;(?&lt;year&gt;\\d+)\\-(?&lt;month&gt;\\d+)\\-(?&lt;day&gt;\\d+)\&quot;`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;function&nbsp;will&nbsp;return&nbsp;a&nbsp;list&nbsp;like:&nbsp;`[\&quot;year\&quot;,&nbsp;\&quot;month\&quot;,&nbsp;\&quot;day\&quot;]`&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;[regex]
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[matcher&nbsp;(re-matcher&nbsp;#&quot;\&lt;(\w+)\&gt;&quot;&nbsp;(str&nbsp;regex))]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(loop&nbsp;[result&nbsp;[]]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[[_&nbsp;group-name&nbsp;:as&nbsp;match]&nbsp;(re-find&nbsp;matcher)]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if-not&nbsp;(seq&nbsp;match)
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(recur&nbsp;(conj&nbsp;result&nbsp;group-name)))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                015&nbsp;&nbsp;(defn&nbsp;named-capture-groups
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&quot;If&nbsp;your&nbsp;regex&nbsp;has&nbsp;named&nbsp;capture&nbsp;groups
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;function&nbsp;will&nbsp;return&nbsp;a&nbsp;map&nbsp;of&nbsp;`&lt;group-name&gt;:&lt;matched-string&gt;`&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;[regex&nbsp;input]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[matcher&nbsp;(re-matcher&nbsp;regex&nbsp;input)]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when&nbsp;(.matches&nbsp;matcher)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&gt;&nbsp;(capture-group-names&nbsp;regex)
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;(fn&nbsp;[n]&nbsp;[(keyword&nbsp;n)&nbsp;(.group&nbsp;matcher&nbsp;n)]))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into&nbsp;{})))))
+                </span><br/>
+ </body>
+</html>
